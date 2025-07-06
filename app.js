@@ -16,25 +16,25 @@ const startGame = () => {
   gameArea.innerHTML = "";
 };
 
-//ant functions
-// const randomPosition = () => {
-//   const areaRect = gameArea.getBoundingClientRect();
-//   const x = Math.random() * (areaRect.width - 40);
-//   const y = Math.random() * (areaRect.height - 40);
-//   return { x, y };
-// };
+// ant functions
+const randomPosition = () => {
+  const areaRect = gameArea.getBoundingClientRect();
+  const x = Math.random() * (areaRect.width - 40);
+  const y = Math.random() * (areaRect.height - 40);
+  return { x, y };
+};
 
 const spawnAnt = () => {
   const ant = document.createElement("div");
   ant.className = "ant";
-  //   const { x, y } = randomPosition();
-  //   ant.style.left = `${x}px`;
-  //   ant.style.top = `${y}px`;
+  const { x, y } = randomPosition();
+  ant.style.left = `${x}px`;
+  ant.style.top = `${y}px`;
 
-  //remove ant after 3s if not smashed
+  //remove ant after 2.5s if not smashed
   setTimeout(() => {
     if (gameArea.contains(ant)) ant.remove();
-  }, 3000);
+  }, 2500);
 
   gameArea.appendChild(ant);
 };

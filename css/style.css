@@ -45,3 +45,13 @@ body {
   overflow: hidden;
   margin: 0 auto;
 }
+
+.ant {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background: url("/assets/images/ant.png") center/contain no-repeat;
+  cursor: pointer;
+  transition: transform 0.1s;
+  animation: ant-move 2s linear infinite;
+}

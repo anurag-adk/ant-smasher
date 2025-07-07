@@ -65,12 +65,20 @@ const pauseGame = () => {
   clearInterval(antInterval);
   isPaused = true;
   pauseBtn.textContent = "Resume";
+  document.querySelectorAll(".ant").forEach((ant) => {
+    ant.style.animationPlayState = "paused";
+    ant.style.pointerEvents = "none";
+  });
 };
 
 const resumeGame = () => {
   antInterval = setInterval(spawnAnt, antSpawnRate);
   isPaused = false;
   pauseBtn.textContent = "Pause";
+  document.querySelectorAll(".ant").forEach((ant) => {
+    ant.style.animationPlayState = "running";
+    ant.style.pointerEvents = "auto";
+  });
 };
 
 //ANT FUNCTIONS

@@ -167,14 +167,14 @@ body {
   position: absolute;
   width: 40px;
   height: 40px;
-  background: url("/assets/images/ant.png") center/contain no-repeat;
+  background: url("../assets/images/ant.png") center/contain no-repeat;
   cursor: pointer;
   transition: transform 0.1s;
   animation: ant-move 2s linear infinite;
 }
 
 .ant.smashed {
-  background: url("/assets/images/ant-smashed.png") center/contain no-repeat;
+  background: url("../assets/images/ant-smashed.png") center/contain no-repeat;
   animation: squash 0.2s forwards;
   pointer-events: none;
 }

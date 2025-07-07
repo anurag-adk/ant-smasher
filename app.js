@@ -17,7 +17,7 @@ let gameOver = false;
 
 highScoreSpan.textContent = highScore;
 
-//core app functions
+//CORE APP FUNCTIONS
 const startGame = () => {
   const oldGameOver = document.getElementById("game-over");
   if (oldGameOver) oldGameOver.remove();
@@ -73,7 +73,7 @@ const resumeGame = () => {
   pauseBtn.textContent = "Pause";
 };
 
-//ant functions
+//ANT FUNCTIONS
 const spawnAnt = () => {
   if (gameOver) return;
   const ant = document.createElement("div");
@@ -93,7 +93,7 @@ const spawnAnt = () => {
   //set ant travel time based on score
   let antTravelTime = 10;
   if (score > 10) {
-    antTravelTime = 6;
+    antTravelTime = 4;
   }
 
   //set initial position and animation
@@ -107,7 +107,7 @@ const spawnAnt = () => {
     ant.style.animation = `ant-move-down ${antTravelTime}s linear forwards`;
   }
 
-  //smashing functionality
+  //SMASHING FUNCTIONALITY
   const smash = () => {
     if (gameOver) return;
     ant.classList.add("smashed");
@@ -128,7 +128,7 @@ const spawnAnt = () => {
 
   ant.addEventListener("click", smash);
 
-  //game over if ant reaches the other side
+  //GAME OVER IF ANT REACHES THE OTHER SIDE
   ant.addEventListener("animationend", () => {
     if (gameArea.contains(ant)) {
       if (!ant.classList.contains("smashed")) {

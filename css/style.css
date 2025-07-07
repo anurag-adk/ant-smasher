@@ -55,3 +55,9 @@ body {
   transition: transform 0.1s;
   animation: ant-move 2s linear infinite;
 }
+
+.ant.smashed {
+  background: url("/assets/images/ant-smashed.png") center/contain no-repeat;
+  animation: squash 0.2s forwards;
+  pointer-events: none;
+}

@@ -16,7 +16,7 @@ const startGame = () => {
   gameArea.innerHTML = "";
 };
 
-// ant functions
+//ant functions
 const randomPosition = () => {
   const areaRect = gameArea.getBoundingClientRect();
   const x = Math.random() * (areaRect.width - 40);
@@ -30,6 +30,24 @@ const spawnAnt = () => {
   const { x, y } = randomPosition();
   ant.style.left = `${x}px`;
   ant.style.top = `${y}px`;
+
+  //smaching functionality
+  const smash = () => {
+    ant.classList.add("smashed");
+    score++;
+    scoreSpan.textContent = score;
+    if (score > highScore) {
+      highScore = score;
+      highScoreSpan.textContent = highScore;
+      localStorage.setItem("antHighScore", highScore);
+    }
+    ant.removeEventListener("click", smash);
+    setTimeout(() => {
+      ant.remove();
+    }, 4000);
+  };
+
+  ant.addEventListener("click", smash);
 
   //remove ant after 2.5s if not smashed
   setTimeout(() => {

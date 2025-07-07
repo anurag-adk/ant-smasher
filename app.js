@@ -13,11 +13,14 @@ let antInterval = null;
 let antSpawnRate = 1200;
 let isPaused = false;
 let gameStarted = false;
+let gameOver = false;
 
 highScoreSpan.textContent = highScore;
 
 //core app functions
 const startGame = () => {
+  const oldGameOver = document.getElementById("game-over");
+  if (oldGameOver) oldGameOver.remove();
   score = 0;
   scoreSpan.textContent = score;
   gameArea.innerHTML = "";
@@ -25,10 +28,22 @@ const startGame = () => {
   antInterval = setInterval(spawnAnt, antSpawnRate);
   isPaused = false;
   gameStarted = true;
+  gameOver = false;
   restartBtn.textContent = "Quit";
   pauseBtn.style.display = "inline-block";
   pauseBtn.disabled = false;
   pauseBtn.textContent = "Pause";
+};
+
+const showGameOver = () => {
+  //remove existing game over
+  const oldGameOver = document.getElementById("game-over");
+  if (oldGameOver) oldGameOver.remove();
+  //create new game over
+  const gameOverDiv = document.createElement("div");
+  gameOverDiv.id = "game-over";
+  gameOverDiv.textContent = "Game Over";
+  gameArea.appendChild(gameOverDiv);
 };
 
 const stopGame = () => {
@@ -39,6 +54,7 @@ const stopGame = () => {
   scoreSpan.textContent = score;
   isPaused = false;
   gameStarted = false;
+  gameOver = false;
   restartBtn.textContent = "Start";
   pauseBtn.style.display = "none";
   pauseBtn.disabled = true;
@@ -59,6 +75,7 @@ const resumeGame = () => {
 
 //ant functions
 const spawnAnt = () => {
+  if (gameOver) return;
   const ant = document.createElement("div");
   ant.className = "ant";
   const areaRect = gameArea.getBoundingClientRect();
@@ -92,6 +109,7 @@ const spawnAnt = () => {
 
   //smashing functionality
   const smash = () => {
+    if (gameOver) return;
     ant.classList.add("smashed");
     smashSound.currentTime = 0;
     smashSound.play();
@@ -110,9 +128,22 @@ const spawnAnt = () => {
 
   ant.addEventListener("click", smash);
 
-  //remove ant after animation ends if not smashed
+  //game over if ant reaches the other side
   ant.addEventListener("animationend", () => {
-    if (gameArea.contains(ant)) ant.remove();
+    if (gameArea.contains(ant)) {
+      if (!ant.classList.contains("smashed")) {
+        gameOver = true;
+        showGameOver();
+        clearInterval(antInterval);
+        antInterval = null;
+        gameStarted = false;
+        restartBtn.textContent = "Start";
+        pauseBtn.style.display = "none";
+        pauseBtn.disabled = true;
+        pauseBtn.textContent = "Pause";
+      }
+      ant.remove();
+    }
   });
 
   gameArea.appendChild(ant);

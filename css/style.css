@@ -100,17 +100,21 @@ body {
   cursor: pointer;
   transition: background 0.2s, color 0.2s;
 }
+
 #restart-btn {
   background: #ffb347;
   color: #fff;
 }
+
 #restart-btn:hover {
   background: #ff9800;
 }
+
 #pause-btn {
   background: #2196f3;
   color: #fff;
 }
+
 #pause-btn:hover {
   background: #1565c0;
 }
@@ -125,6 +129,7 @@ body {
   margin-top: 0;
   width: 100%;
 }
+
 #rules h3 {
   margin-top: 0;
   color: #374151;
@@ -134,26 +139,22 @@ body {
   align-items: center;
   gap: 10px;
 }
+
 #rules h3::before {
-  content: "🕹️";
+  content: "🐜";
   font-size: 1.2em;
 }
+
 #rules ul {
   padding-left: 22px;
   margin: 0;
 }
+
 #rules li {
   margin-bottom: 10px;
   line-height: 1.7;
 }
-#rules .red {
-  color: #e53935;
-  font-weight: 600;
-}
-#rules .blue {
-  color: #039be5;
-  font-weight: 600;
-}
+
 #rules code {
   background: #e0e7ef;
   border-radius: 4px;
@@ -176,6 +177,23 @@ body {
   background: url("/assets/images/ant-smashed.png") center/contain no-repeat;
   animation: squash 0.2s forwards;
   pointer-events: none;
+}
+
+#game-over {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 3em;
+  color: #e53935;
+  font-weight: bold;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 32px 48px;
+  border-radius: 16px;
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  text-align: center;
+  letter-spacing: 2px;
 }
 
 @keyframes ant-move-up {

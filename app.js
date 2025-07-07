@@ -12,6 +12,7 @@ let highScore = parseInt(localStorage.getItem("antHighScore")) || 0;
 let antInterval = null;
 let antSpawnRate = 1200;
 let isPaused = false;
+let gameStarted = false;
 
 highScoreSpan.textContent = highScore;
 
@@ -23,6 +24,24 @@ const startGame = () => {
   if (antInterval) clearInterval(antInterval);
   antInterval = setInterval(spawnAnt, antSpawnRate);
   isPaused = false;
+  gameStarted = true;
+  restartBtn.textContent = "Quit";
+  pauseBtn.style.display = "inline-block";
+  pauseBtn.disabled = false;
+  pauseBtn.textContent = "Pause";
+};
+
+const stopGame = () => {
+  clearInterval(antInterval);
+  antInterval = null;
+  gameArea.innerHTML = "";
+  score = 0;
+  scoreSpan.textContent = score;
+  isPaused = false;
+  gameStarted = false;
+  restartBtn.textContent = "Start";
+  pauseBtn.style.display = "none";
+  pauseBtn.disabled = true;
   pauseBtn.textContent = "Pause";
 };
 
@@ -99,7 +118,18 @@ const spawnAnt = () => {
   gameArea.appendChild(ant);
 };
 
-restartBtn.addEventListener("click", startGame);
+restartBtn.textContent = "Start";
+pauseBtn.style.display = "none";
+pauseBtn.disabled = true;
+
+restartBtn.addEventListener("click", () => {
+  if (!gameStarted) {
+    startGame();
+  } else {
+    stopGame();
+  }
+});
+
 pauseBtn.addEventListener("click", () => {
   if (isPaused) {
     resumeGame();
@@ -107,6 +137,3 @@ pauseBtn.addEventListener("click", () => {
     pauseGame();
   }
 });
-
-//start game on load
-startGame();

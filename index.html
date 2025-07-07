@@ -7,15 +7,29 @@
     <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body>
-    <div id="game-container">
-      <div id="scoreboard">
-        Score: <span id="score">0</span> | High Score:<span id="high-score"
-          >0</span
-        >
+    <div id="main-layout">
+      <div id="game-container">
+        <div id="current-score">Score: <span id="score">0</span></div>
+        <div id="game-area"></div>
       </div>
-      <button id="restart-btn">Restart</button>
-      <button id="pause-btn">Pause</button>
-      <div id="game-area"></div>
+      <div id="sidebar">
+        <div id="rules">
+          <div id="scoreboard">High Score:<span id="high-score">0</span></div>
+          <h3>How to Play</h3>
+          <ul>
+            <li>Click on the ants to smash them and score points.</li>
+            <li>Each smashed ant gives you 1 point.</li>
+            <li>Try to beat your high score!</li>
+            <li>Ants disappear if not smashed in time.</li>
+            <li>Use Pause/Resume to take a break.</li>
+            <li>Click Restart to start a new game.</li>
+          </ul>
+          <div id="sidebar-buttons">
+            <button id="restart-btn">Restart</button>
+            <button id="pause-btn">Pause</button>
+          </div>
+        </div>
+      </div>
     </div>
     <!-- we're including app.js at end of body tag instead of beginning to ensure that the DOM is loaded properly before script runs-->
     <audio

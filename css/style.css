@@ -25,14 +25,32 @@ body {
   margin-bottom: 12px;
   padding: 8px 20px;
   font-size: 1em;
-  background: #ffb347;
+  background: #f0a133;
+  color: #fff;
   border: none;
   border-radius: 6px;
   cursor: pointer;
   transition: background 0.2s;
 }
 #restart-btn:hover {
-  background: #ff9800;
+  background: #ffbf5f;
+}
+
+#pause-btn {
+  margin-bottom: 12px;
+  margin-left: 8px;
+  padding: 8px 20px;
+  font-size: 1em;
+  background: #0288d1;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+#pause-btn:hover {
+  background: #6ec6ff;
+  color: #e3f2fd;
 }
 
 #game-area {

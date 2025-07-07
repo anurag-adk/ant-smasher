@@ -3,13 +3,16 @@ const gameArea = document.getElementById("game-area");
 const scoreSpan = document.getElementById("score");
 const highScoreSpan = document.getElementById("high-score");
 const restartBtn = document.getElementById("restart-btn");
+const pauseBtn = document.getElementById("pause-btn");
 const smashSound = document.getElementById("smash-sound");
 
 //defining score variables and keeping track of highscore with localStorge
 let score = 0;
 let highScore = parseInt(localStorage.getItem("antHighScore")) || 0;
 let antInterval = null;
-let antSpawnRate = 1000; // ms
+let antSpawnRate = 1000;
+let isPaused = false;
+
 highScoreSpan.textContent = highScore;
 
 //core app functions
@@ -19,7 +22,29 @@ const startGame = () => {
   gameArea.innerHTML = "";
   if (antInterval) clearInterval(antInterval);
   antInterval = setInterval(spawnAnt, antSpawnRate);
+  isPaused = false;
+  pauseBtn.textContent = "Pause";
 };
+
+const pauseGame = () => {
+  clearInterval(antInterval);
+  isPaused = true;
+  pauseBtn.textContent = "Resume";
+};
+
+const resumeGame = () => {
+  antInterval = setInterval(spawnAnt, antSpawnRate);
+  isPaused = false;
+  pauseBtn.textContent = "Pause";
+};
+
+pauseBtn.addEventListener("click", () => {
+  if (isPaused) {
+    resumeGame();
+  } else {
+    pauseGame();
+  }
+});
 
 //ant functions
 const randomPosition = () => {

@@ -3,6 +3,7 @@ const gameArea = document.getElementById("game-area");
 const scoreSpan = document.getElementById("score");
 const highScoreSpan = document.getElementById("high-score");
 const restartBtn = document.getElementById("restart-btn");
+const smashSound = document.getElementById("smash-sound");
 
 //defining score variables and keeping track of highscore with localStorge
 let score = 0;
@@ -38,6 +39,8 @@ const spawnAnt = () => {
   //smaching functionality
   const smash = () => {
     ant.classList.add("smashed");
+    smashSound.currentTime = 0;
+    smashSound.play();
     score++;
     scoreSpan.textContent = score;
     if (score > highScore) {

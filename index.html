@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body>
-    <script src="/app.js"></script>
     <div id="game-container">
       <div id="scoreboard">
         Score: <span id="score">0</span> | High Score:<span id="high-score"
@@ -17,5 +16,12 @@
       <button id="restart-btn">Restart</button>
       <div id="game-area"></div>
     </div>
+    <!-- we're including app.js at end of body tag instead of beginning to ensure that the DOM is loaded properly before script runs-->
+    <audio
+      id="smash-sound"
+      src="/assets/audio/smash.mp3"
+      preload="auto"
+    ></audio>
+    <script src="/app.js"></script>
   </body>
 </html>
